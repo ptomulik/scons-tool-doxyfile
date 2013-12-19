@@ -52,14 +52,15 @@ def DoxyVal(env, val, kind=None, **kw):
         'dualdirs'      : DoxyValDualDirs,
     }
     if kind is None:
-        kind = type(val).__name__
-    if kind is not None:
-        if not SCons.Util.is_String(kind):
-            kind = kind.__name__.lower()
-        try:
-            klass = _class_map[kind]
-        except KeyError:
-            raise SCons.Errors.UserError("can not create doxygen option of type %s" % kind)
+        kind = type(val).__name__.lower()
+    if kind is None:
+        raise SCons.Errors.UserError("can not create doxygen option with no type")
+    if not SCons.Util.is_String(kind):
+        kind = kind.__name__.lower()
+    try:
+        klass = _class_map[kind]
+    except KeyError:
+        raise SCons.Errors.UserError("can not create doxygen option of type %s" % kind)
     return klass(env,val,**kw)
 
 
@@ -155,7 +156,7 @@ class DoxyValDict(DoxyValSeq):
         import SCons.Errors
         if not isinstance(val, dict):
             raise SCons.Errors.UserError("can not set doxygen option of type int to %r" % val)
-        self._value = val.copy()
+        self._value = dict([(k,DoxyVal(self._env, v, **self._kw)) for k,v in val.iteritems()])
     def _str(self):
         f = lambda k,v : "%s%s%s" % (k, self._kw['dsep'], ('' if v is None else v))
         items = [f(k,v) for (k,v) in self._value.iteritems()]
