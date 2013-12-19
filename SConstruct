@@ -25,6 +25,9 @@ if 'doc-options' in COMMAND_LINE_TARGETS:
   from doxyoptions import *
   print generate_doc(env)
 
+AlwaysBuild('doc-options')
+Alias('doc-options',None)
+
 # Local Variables:
 # # tab-width:4
 # # indent-tabs-mode:nil

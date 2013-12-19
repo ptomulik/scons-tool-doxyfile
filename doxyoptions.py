@@ -570,11 +570,12 @@ def doxyoptions(env):
     return opts
 
 def generate_doc(env):
-    table = [ [key, val.kind(), "%s" % val] for key,val in doxyoptions(env).iteritems()]
+    opts = doxyoptions(env)
+    table = [ [key, opts[key].kind(), "%s" % opts[key]] for key in sorted(opts.keys())]
     width = lambda n : max([len(r[n]) for r in table])
     widths = [width(i) for i in range(0,3)]
     widths[0] += 1
-    fmt = " %%-%ds %%-%ds %%-%ds " % (widths[0],widths[1],widths[2])
+    fmt = "%%-%ds %%-%ds %%-%ds " % (widths[0],widths[1],widths[2])
     hdr = fmt % tuple('=' * widths[i] for i in range(0,3))
     doc = []
     doc.append(hdr)
