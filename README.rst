@@ -1,5 +1,5 @@
-scons-doxygen-template
-======================
+scons-tool-doxyfile
+===================
 
 SCons_ tool to generate Doxyfile for Doxygen_. The generated Doxyfile may be
 further used by scons_doxygen_ tool.
