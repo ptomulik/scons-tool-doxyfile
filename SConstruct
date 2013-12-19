@@ -1,8 +1,3 @@
-"""`doxyfile`
-
-Tool specific initialization for doxyfile.
-"""
-
 #
 # Copyright (c) 2013 by Pawel Tomulik
 # 
@@ -24,35 +19,14 @@ Tool specific initialization for doxyfile.
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE
 
-__docformat__ = "restructuredText"
+env = Environment()
 
-from doxyoptions import *
-
-def Doxyfile(env, target='Doxyfile', *args, **kw):
-    import SCons.Util
-    import copy
-    # build subst-dict
-    sd = {}
-    for key,val in doxyoptions(env).iteritems():
-        placeholder = '@%s@' % key
-        sd[placeholder] = copy.copy(val)
-        try: sd[placeholder].assign(kw[key])
-        except KeyError: pass
-    # use builder
-    return env.Substfile(target, *args, SUBST_DICT = sd)
-
-def generate(env):
-    try:
-        env['BUILDERS']['Substfile']
-    except KeyError:
-        env.Tool('textfile')
-    env.AddMethod(Doxyfile,'Doxyfile')
-
-def exists(env):
-    return 1
+if 'doc-options' in COMMAND_LINE_TARGETS:
+  from doxyoptions import *
+  print generate_doc(env)
 
 # Local Variables:
 # # tab-width:4
 # # indent-tabs-mode:nil
 # # End:
-# vim: set syntax=python expandtab tabstop=4 shiftwidth=4 nospell:
+# vim: set syntax=scons expandtab tabstop=4 shiftwidth=4 nospell:
