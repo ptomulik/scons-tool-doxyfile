@@ -158,7 +158,7 @@ class DoxyValDict(DoxyValSeq):
         self._value = val.copy()
     def _str(self):
         f = lambda k,v : "%s%s%s" % (k, self._kw['dsep'], ('' if v is None else v))
-        items = [f(k,v) for (k,v) in val.iteritems()]
+        items = [f(k,v) for (k,v) in self._value.iteritems()]
         return super(DoxyValDict,self)._str_seq(items)
 
 class DoxyValFsList(DoxyValList):
