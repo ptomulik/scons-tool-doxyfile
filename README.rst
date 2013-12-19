@@ -709,10 +709,6 @@ XML_SCHEMA_              str
 .. _XML_OUTPUT: http://doxygen.org/manual/config.html#cfg_xml_output
 .. _XML_PROGRAMLISTING: http://doxygen.org/manual/config.html#cfg_xml_programlisting
 .. _XML_SCHEMA: http://doxygen.org/manual/config.html#cfg_xml_schema
-scons: done reading SConscript files.
-scons: Building targets ...
-scons: Nothing to be done for `doc-options'.
-scons: done building targets.
 
 .. <!-- Other links -->
 .. _SCons: http://scons.org
