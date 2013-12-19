@@ -26,7 +26,7 @@ Git-based projects
 
 #. Copy doxygen template to ``src/``::
 
-      cp site_scons/site_tools/doxyfile/Doxygen.in src/
+      mkdir src && cp site_scons/site_tools/doxyfile/Doxyfile.in src/
 
 #. Create some source files, for example ``src/test.hpp``:
 
@@ -44,7 +44,7 @@ Git-based projects
 
       # SConstruct
       env = Environment(tools = [ 'doxyfile', 'doxygen'])
-      SConscript('doc/SConscript', exports=['env'], variant_dir='build', duplicate=0)
+      SConscript('src/SConscript', exports=['env'], variant_dir='build', duplicate=0)
 
 #. Write ``src/SConscript``:
 
@@ -61,14 +61,10 @@ Git-based projects
 
    This shall create documentation under ``build`` directory.
 
-#. Check the generated documentation (it should contain docs for ``TestClass``)::
+#. Check the generated documentation (it should contain docs for ``TestClass``
+   under ``Classes`` tab)::
 
       firefox build/html/index.html
-
-#. To clean-up the documentation run::
-
-      scons -c api-doc
-
 
 Details
 -------
@@ -100,45 +96,85 @@ Option types
 
 The options ``Doxyfile()`` builder accepts are categorized into several types:
 
-=========== ========================= =========================== ===================================================================================
-Type        Note                      Example value in SConscript Example output to Doxyfile
-=========== ========================= =========================== ===================================================================================
-int         integer                   ``3``                       ``3``
-str         string                    ``'str1'`` or ``'str 2'``   ``str1`` or ``"str 2"``
-list        list                      ``['a b', False, 3]``       ``"a b" False 3``
-dict        dictionary                ``{'a' : 'A', 'b' : 'B'}``  ``a=A b=B``
-bool        boolean                   ``True`` or ``False``       ``YES`` or ``NO``
-entry       ref to file or directory  ``'foo'``                   ``/tmp/prj/build/foo``
-file        ref to file               ``'bar.txt'``               ``/tmp/prj/build/bar.txt``
-dir         ref to directory          ``'.'``                     ``/tmp/prj/build``
-srcentry    ref to source file or dir ``'foo'``                   ``/tmp/prj/src/foo``
-srcfile     ref to source file        ``'foo.txt'``               ``/tmp/prj/src/foo.txt``
-srcdir      ref to source directory   ``'.'``                     ``/tmp/prj/src``
-dualentry   ref to entry + its source ``'foo'``                   ``/tmp/prj/build/foo /tmp/prj/src/foo``
-dualfile    ref to file + its source  ``'foo.txt'``               ``/tmp/prj/build/foo.txt /tmp/prj/src/foo.txt``
-dualdir     ref to dir + its source   ``'.'``                     ``/tmp/prj/build /tmp/prj/src``
-entries     list of entries           ``['foo', 'bar/gez']``      ``/tmp/prj/build/foo /tmp/prj/build/bar/geez``
-files       list of files             ``['foo', 'bar.txt']``      ``/tmp/prj/build/foo /tmp/prj/build/bar.txt``
-dirs        list of directories       ``['.', 'foo']``            ``/tmp/prj/build /tmp/prj/build/foo``
-srcentries  list of source entries    ``['.', 'foo']``            ``/tmp/prj/src /tmp/prj/src/foo``
-srcfiles    list of source files      ``['a.txt', 'b.txt']``      ``/tmp/prj/src/a.txt /tmp/prj/src/b.txt``
-srcdirs     list of source dirs       ``['.', 'foo']``            ``/tmp/prj/src /tmp/prj/src/foo``
-dualentries list of dual entries      ``['.', 'foo']``            ``/tmp/prj/build /tmp/prj/src /tmp/prj/build/foo /tmp/prj/src/foo``
-dualfiles   list of dual files        ``['a.txt', 'b.txt']``      ``/tmp/prj/build/a.txt /tmp/prj/src/a.txt /tmp/prj/build/b.txt /tmp/prj/src/b.txt``
-dualdirs    list of dual directories  ``['.', 'foo']``            ``/tmp/prj/build /tmp/prj/src /tmp/prj/build/foo /tmp/prj/src/foo``
-=========== ========================= =========================== ===================================================================================
++---------------+--------------------------+----------------------------+----------------------------+
+| Type          | Note                     | Example value in SConscript| Example output to Doxyfile | 
++===============+==========================+============================+============================+
+| *int*         | integer                  | 3                          | 3                          |
++---------------+--------------------------+----------------------------+----------------------------+
+| *str*         | string                   | 'str1' or 'str 2'          | str1 or "str 2"            |
++---------------+--------------------------+----------------------------+----------------------------+
+| *list*        | list                     | ['a b', False, 3]          | "a b" False 3              |
++---------------+--------------------------+----------------------------+----------------------------+
+| *dict*        | dictionary               | {'a' : 'A', 'b' : 'B'}     | a=A b=B                    |
++---------------+--------------------------+----------------------------+----------------------------+
+| *bool*        | boolean                  | True or False              | YES or NO                  |
++---------------+--------------------------+----------------------------+----------------------------+
+| *entry*       | ref to file or directory | 'foo'                      | /tmp/prj/build/foo         |
++---------------+--------------------------+----------------------------+----------------------------+
+| *file*        | ref to file              | 'bar.txt'                  | /tmp/prj/build/bar.txt     |
++---------------+--------------------------+----------------------------+----------------------------+
+| *dir*         | ref to directory         | '.'                        | /tmp/prj/build             |
++---------------+--------------------------+----------------------------+----------------------------+
+| *srcentry*    | ref to source file or dir| 'foo'                      | /tmp/prj/src/foo           |
++---------------+--------------------------+----------------------------+----------------------------+
+| *srcfile*     | ref to source file       | 'foo.txt'                  | /tmp/prj/src/foo.txt       |
++---------------+--------------------------+----------------------------+----------------------------+
+| *srcdir*      | ref to source directory  | '.'                        | /tmp/prj/src               |
++---------------+--------------------------+----------------------------+----------------------------+
+| *dualentry*   | ref to entry + its source| 'foo'                      | | /tmp/prj/build/foo \\    |
+|               |                          |                            | | /tmp/prj/src/foo         |
++---------------+--------------------------+----------------------------+----------------------------+
+| *dualfile*    | ref to file + its source | 'foo.txt'                  | | /tmp/prj/build/foo.txt \\|
+|               |                          |                            | | /tmp/prj/src/foo.txt     |
++---------------+--------------------------+----------------------------+----------------------------+
+| *dualdir*     | ref to dir + its source  | '.'                        | | /tmp/prj/build \\        |
+|               |                          |                            | | /tmp/prj/src             |
++---------------+--------------------------+----------------------------+----------------------------+
+| *entries*     | list of entries          | ['foo', 'bar/gez']         | | /tmp/prj/build/foo \\    |
+|               |                          |                            | | /tmp/prj/build/bar/geez  |
++---------------+--------------------------+----------------------------+----------------------------+
+| *files*       | list of files            | ['foo', 'bar.txt']         | | /tmp/prj/build/foo \\    |
+|               |                          |                            | | /tmp/prj/build/bar.txt   |
++---------------+--------------------------+----------------------------+----------------------------+
+| *dirs*        | list of directories      | ['.', 'foo']               | | /tmp/prj/build \\        |
+|               |                          |                            | | /tmp/prj/build/foo       |
++---------------+--------------------------+----------------------------+----------------------------+
+| *srcentries*  | list of source entries   | ['.', 'foo']               | | /tmp/prj/src \\          |
+|               |                          |                            | | /tmp/prj/src/foo         |
++---------------+--------------------------+----------------------------+----------------------------+
+| *srcfiles*    | list of source files     | ['a.txt', 'b.txt']         | | /tmp/prj/src/a.txt \\    |
+|               |                          |                            | | /tmp/prj/src/b.txt       |
++---------------+--------------------------+----------------------------+----------------------------+
+| *srcdirs*     | list of source dirs      | ['.', 'foo']               | | /tmp/prj/src \\          |
+|               |                          |                            | | /tmp/prj/src/foo         |
++---------------+--------------------------+----------------------------+----------------------------+
+| *dualentries* | list of dual entries     | ['.', 'foo']               | | /tmp/prj/build \\        |
+|               |                          |                            | | /tmp/prj/src \\          |
+|               |                          |                            | | /tmp/prj/build/foo \\    |
+|               |                          |                            | | /tmp/prj/src/foo         |
++---------------+--------------------------+----------------------------+----------------------------+
+| *dualfiles*   | list of dual files       | ['a.txt', 'b.txt']         | | /tmp/prj/build/a.txt \\  |
+|               |                          |                            | | /tmp/prj/src/a.txt \\    |
+|               |                          |                            | | /tmp/prj/build/b.txt \\  |
+|               |                          |                            | | /tmp/prj/src/b.txt       |
++---------------+--------------------------+----------------------------+----------------------------+
+| *dualdirs*    | list of dual directories | ['.', 'foo']               | | /tmp/prj/build \\        |
+|               |                          |                            | | /tmp/prj/src \\          |
+|               |                          |                            | | /tmp/prj/build/foo \\    |
+|               |                          |                            | | /tmp/prj/src/foo         |
++---------------+--------------------------+----------------------------+----------------------------+
 
-An ``entry`` is a path to file or directory (undecided). For each value of type
-``entry``, ``file`` or ``dir`` a single path is outputted to Doxyfile. If
+An *entry* is a path to file or directory (undecided). For each value of type
+*entry*, *file* or *dir* a single path is outputted to Doxyfile. If
 relative paths are provided by user, they are assumed to be relative to a
 directory containing the calling ``SConscript``. Note, that ``SCons`` will
 write absolute paths to Doxyfile, so you should consider using
 ``STRIP_FROM_PATH``, ``STRIP_FROM_INC_PATH`` and similar options.
 
-In variant builds, the ``entry``, ``file`` and ``directory``, if given as
+In variant builds, the *entry*, *file* and *directory*, if given as
 relative paths,  will point to a file or subdirectory of build dir.
 
-A ``srcentry``, ``srcfile``, or ``srcdir`` will generate a path pointing to a
+A *srcentry*, *srcfile*, or *srcdir* will generate a path pointing to a
 source file or directory corresponding to given file. This, of course, becomes
 relevant when variant builds are used.
 
