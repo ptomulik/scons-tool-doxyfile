@@ -389,7 +389,7 @@ def doxyoptions(env):
         'FILE_VERSION_FILTER'       : DoxyVal(env, ''),
         'FILTER_PATTERNS'           : DoxyVal(env, {}),
         'FILTER_SOURCE_FILES'       : DoxyVal(env, False),
-        'FILTER_SOURCE_PATTERNS'    : DoxyVal(env, ''),
+        'FILTER_SOURCE_PATTERNS'    : DoxyVal(env, {}),
         'FORCE_LOCAL_INCLUDES'      : DoxyVal(env, False),
         'FORMULA_FONTSIZE'          : DoxyVal(env, 10),
         'FORMULA_TRANSPARENT'       : DoxyVal(env, True),

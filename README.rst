@@ -276,7 +276,7 @@ FILE_PATTERNS_           str
 FILE_VERSION_FILTER_     str                                              
 FILTER_PATTERNS_         dict                                             
 FILTER_SOURCE_FILES_     bool       NO                                    
-FILTER_SOURCE_PATTERNS_  str                                              
+FILTER_SOURCE_PATTERNS_  dict                                             
 FORCE_LOCAL_INCLUDES_    bool       NO                                    
 FORMULA_FONTSIZE_        int        10                                    
 FORMULA_TRANSPARENT_     bool       YES                                   
