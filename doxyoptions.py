@@ -494,7 +494,7 @@ def doxyoptions(env):
         'PERLMOD_MAKEVAR_PREFIX'    : DoxyVal(env, ''),
         'PERLMOD_PRETTY'            : DoxyVal(env, True),
         'PERL_PATH'                 : DoxyVal(env, '/usr/bin/perl'),
-        'PREDEFINED'                : DoxyVal(env, ''),
+        'PREDEFINED'                : DoxyVal(env, []),
         'PROJECT_BRIEF'             : DoxyVal(env, ''),
         'PROJECT_LOGO'              : DoxyVal(env, ''),
         'PROJECT_NAME'              : DoxyVal(env, 'My Project'),

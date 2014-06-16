@@ -381,7 +381,7 @@ PERLMOD_LATEX_           bool       NO
 PERLMOD_MAKEVAR_PREFIX_  str                                              
 PERLMOD_PRETTY_          bool       YES                                   
 PERL_PATH_               str        /usr/bin/perl                         
-PREDEFINED_              str                                              
+PREDEFINED_              list                                             
 PROJECT_BRIEF_           str                                              
 PROJECT_LOGO_            str                                              
 PROJECT_NAME_            str        "My Project"                          
