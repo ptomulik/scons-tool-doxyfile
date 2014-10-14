@@ -255,7 +255,7 @@ EXCLUDE_                 srcdirs
 EXCLUDE_PATTERNS_        str                                              
 EXCLUDE_SYMBOLS_         str                                              
 EXCLUDE_SYMLINKS_        bool       NO                                    
-EXPAND_AS_DEFINED_       str                                              
+EXPAND_AS_DEFINED_       list                                             
 EXPAND_ONLY_PREDEF_      bool       NO                                    
 EXTENSION_MAPPING_       str                                              
 EXTERNAL_GROUPS_         bool       YES                                   

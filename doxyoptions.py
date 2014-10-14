@@ -368,7 +368,7 @@ def doxyoptions(env):
         'EXCLUDE_PATTERNS'          : DoxyVal(env, ''),
         'EXCLUDE_SYMBOLS'           : DoxyVal(env, ''),
         'EXCLUDE_SYMLINKS'          : DoxyVal(env, False),
-        'EXPAND_AS_DEFINED'         : DoxyVal(env, ''),
+        'EXPAND_AS_DEFINED'         : DoxyVal(env, []),
         'EXPAND_ONLY_PREDEF'        : DoxyVal(env, False),
         'EXTENSION_MAPPING'         : DoxyVal(env, ''),
         'EXTERNAL_GROUPS'           : DoxyVal(env, True),
