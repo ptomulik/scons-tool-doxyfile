@@ -1,0 +1,12 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[dev-packages]
+scons = ">=3.0.1"
+twine = "*"
+scons-tool-loader = ">=0.1.9"
+
+[requires]
+python = "2.7"

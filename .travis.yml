@@ -1,0 +1,23 @@
+language:
+  python
+
+python:
+  - 2.7
+  - 3.5
+  - 3.6
+  - 3.7-dev
+
+install:
+  - pip install -U pip
+  - pip --version
+  - pip install -r requirements.txt
+  - pip install -r requirements-dev.txt
+  - python bin/downloads.py
+
+
+before_script:
+  - which python
+  - which scons
+
+script:
+  - python runtest --verbose=2 -e test/system

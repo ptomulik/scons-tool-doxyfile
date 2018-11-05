@@ -72,10 +72,10 @@ Details
 Module contents and description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The **scons-tool-doxyfile** consists of five files:
+The **scons-tool-doxyfile** contains these crucial files:
 
-* ``__init__.py`` and ``doxyoptions.py`` files, 
-* ``Doxyfile.in`` template.
+* ``__init__.py``, ``doxyoptions.py`` and ``about.py`` files,
+* ``Doxyfile.in`` template,
 * ``SConstruct`` script, and
 * this ``README.rst``
 
@@ -86,7 +86,7 @@ arguments to ``Doxyfile``:
 
 .. code-block:: python
 
-   env.Doxyfile(INPUT = '.', RECURSIVE = True, STRIP_FROM_INC_PATH = '.', ...)
+   env.Doxyfile(INPUT='.', RECURSIVE=True, STRIP_FROM_INC_PATH='.', ...)
 
 Same template may be used to generate documentation for several sub-projects by
 using different sets of options (and variant builds, if necessary).
@@ -99,7 +99,7 @@ Option types
 The options ``Doxyfile()`` builder accepts are categorized into several types:
 
 +---------------+--------------------------+----------------------------+----------------------------+
-| Type          | Note                     | Example value in SConscript| Example output to Doxyfile | 
+| Type          | Note                     | Example value in SConscript| Example output to Doxyfile |
 +===============+==========================+============================+============================+
 | *int*         | integer                  | 3                          | 3                          |
 +---------------+--------------------------+----------------------------+----------------------------+
@@ -196,264 +196,264 @@ Supported options
 
 The supported options are summarized in the following table:
 
-======================== ========== ===================================== 
-Option                   Type       Default                               
-======================== ========== ===================================== 
-ABBREVIATE_BRIEF_        str                                              
-ALIASES_                 str                                              
-ALLEXTERNALS_            bool       NO                                    
-ALPHABETICAL_INDEX_      bool       YES                                   
-ALWAYS_DETAILED_SEC_     bool       NO                                    
-AUTOLINK_SUPPORT_        bool       YES                                   
-BINARY_TOC_              bool       NO                                    
-BRIEF_MEMBER_DESC_       bool       YES                                   
-BUILTIN_STL_SUPPORT_     bool       NO                                    
-CALLER_GRAPH_            bool       NO                                    
-CALL_GRAPH_              bool       NO                                    
-CASE_SENSE_NAMES_        bool       *OS specific* 
-CHM_FILE_                srcfile                                          
-CHM_INDEX_ENCODING_      str                                              
-CITE_BIB_FILES_          files                                            
-CLANG_ASSISTED_PARSING_  bool       NO                                    
-CLANG_OPTIONS_           str                                              
-CLASS_DIAGRAMS_          bool       YES                                   
-CLASS_GRAPH_             bool       YES                                   
-COLLABORATION_GRAPH_     bool       YES                                   
-COLS_IN_ALPHA_INDEX_     str                                              
-COMPACT_LATEX_           bool       NO                                    
-COMPACT_RTF_             bool       NO                                    
-CPP_CLI_SUPPORT_         bool       NO                                    
-CREATE_SUBDIRS_          bool       NO                                    
-DIRECTORY_GRAPH_         bool       YES                                   
-DISABLE_INDEX_           bool       NO                                    
-DISTRIBUTE_GROUP_DOC_    bool       NO                                    
-DOCBOOK_OUTPUT_          dir                                              
-DOCSET_BUNDLE_ID_        str        org.doxygen.Project                   
-DOCSET_FEEDNAME_         str        "Doxygen generated docs"              
-DOCSET_PUBLISHER_ID_     str        org.doxygen.Publisher                 
-DOCSET_PUBLISHER_NAME_   str        Publisher                             
-DOTFILE_DIRS_            srcdirs                                          
-DOT_CLEANUP_             bool       YES                                   
-DOT_FONTNAME_            str        Helvetica                             
-DOT_FONTPATH_            srcdir                                           
-DOT_FONTSIZE_            int        10                                    
-DOT_GRAPH_MAX_NODES_     int        50                                    
-DOT_IMAGE_FORMAT_        str        png                                   
-DOT_MULTI_TARGETS_       bool       NO                                    
-DOT_NUM_THREADS_         int        0                                     
-DOT_PATH_                str                                              
-DOT_TRANSPARENT_         bool       NO                                    
-DOXYFILE_ENCODING_       str        UTF-8                                 
-ECLIPSE_DOC_ID_          str        org.doxygen.Project                   
-ENABLED_SECTIONS_        str                                              
-ENABLE_PREPROCESSING_    bool       YES                                   
-ENUM_VALUES_PER_LINE_    int        4                                     
-EXAMPLE_PATH_            srcdirs                                          
-EXAMPLE_PATTERNS_        str                                              
-EXAMPLE_RECURSIVE_       bool       NO                                    
-EXCLUDE_                 srcdirs                                          
-EXCLUDE_PATTERNS_        str                                              
-EXCLUDE_SYMBOLS_         str                                              
-EXCLUDE_SYMLINKS_        bool       NO                                    
-EXPAND_AS_DEFINED_       list                                             
-EXPAND_ONLY_PREDEF_      bool       NO                                    
-EXTENSION_MAPPING_       str                                              
-EXTERNAL_GROUPS_         bool       YES                                   
-EXTERNAL_PAGES_          bool       YES                                   
-EXTERNAL_SEARCH_         bool       NO                                    
-EXTERNAL_SEARCH_ID_      str                                              
-EXTRACT_ALL_             bool       NO                                    
-EXTRACT_ANON_NSPACES_    bool       NO                                    
-EXTRACT_LOCAL_CLASSES_   bool       YES                                   
-EXTRACT_LOCAL_METHODS_   bool       NO                                    
-EXTRACT_PACKAGE_         bool       NO                                    
-EXTRACT_PRIVATE_         bool       NO                                    
-EXTRACT_STATIC_          bool       NO                                    
-EXTRA_PACKAGES_          str                                              
-EXTRA_SEARCH_MAPPINGS_   str                                              
-EXT_LINKS_IN_WINDOW_     bool       NO                                    
-FILE_PATTERNS_           str                                              
-FILE_VERSION_FILTER_     str                                              
-FILTER_PATTERNS_         dict                                             
-FILTER_SOURCE_FILES_     bool       NO                                    
-FILTER_SOURCE_PATTERNS_  dict                                             
-FORCE_LOCAL_INCLUDES_    bool       NO                                    
-FORMULA_FONTSIZE_        int        10                                    
-FORMULA_TRANSPARENT_     bool       YES                                   
-FULL_PATH_NAMES_         bool       YES                                   
-GENERATE_AUTOGEN_DEF_    bool       NO                                    
-GENERATE_BUGLIST_        bool       YES                                   
-GENERATE_CHI_            bool       NO                                    
-GENERATE_DEPRECATEDLIST_ bool       YES                                   
-GENERATE_DOCBOOK_        bool       NO                                    
-GENERATE_DOCSET_         bool       NO                                    
-GENERATE_ECLIPSEHELP_    bool       NO                                    
-GENERATE_HTML_           bool       YES                                   
-GENERATE_HTMLHELP_       bool       NO                                    
-GENERATE_LATEX_          bool       YES                                   
-GENERATE_LEGEND_         bool       YES                                   
-GENERATE_MAN_            bool       NO                                    
-GENERATE_PERLMOD_        bool       NO                                    
-GENERATE_QHP_            bool       NO                                    
-GENERATE_RTF_            bool       NO                                    
-GENERATE_TAGFILE_        file                                             
-GENERATE_TESTLIST_       bool       YES                                   
-GENERATE_TODOLIST_       bool       YES                                   
-GENERATE_TREEVIEW_       bool       NO                                    
-GENERATE_XML_            bool       NO                                    
-GRAPHICAL_HIERARCHY_     bool       YES                                   
-GROUP_GRAPHS_            bool       YES                                   
-HAVE_DOT_                bool       NO                                    
-HHC_LOCATION_            str                                              
-HIDE_FRIEND_COMPOUNDS_   bool       NO                                    
-HIDE_IN_BODY_DOCS_       bool       NO                                    
-HIDE_SCOPE_NAMES_        bool       NO                                    
-HIDE_UNDOC_CLASSES_      bool       NO                                    
-HIDE_UNDOC_MEMBERS_      bool       NO                                    
-HIDE_UNDOC_RELATIONS_    bool       YES                                   
-HTML_COLORSTYLE_GAMMA_   int        80                                    
-HTML_COLORSTYLE_HUE_     int        220                                   
-HTML_COLORSTYLE_SAT_     int        100                                   
-HTML_DYNAMIC_SECTIONS_   bool       NO                                    
-HTML_EXTRA_FILES_        srcfiles                                         
-HTML_EXTRA_STYLESHEET_   srcfile                                          
-HTML_FILE_EXTENSION_     str        .html                                 
-HTML_FOOTER_             srcfile                                          
-HTML_HEADER_             srcfile                                          
-HTML_INDEX_NUM_ENTRIES_  int        100                                   
-HTML_OUTPUT_             str        html                                  
-HTML_STYLESHEET_         srcfile                                          
-HTML_TIMESTAMP_          bool       YES                                   
-IDL_PROPERTY_SUPPORT_    bool       YES                                   
-IGNORE_PREFIX_           str                                              
-IMAGE_PATH_              srcdirs                                          
-INCLUDED_BY_GRAPH_       bool       YES                                   
-INCLUDE_FILE_PATTERNS_   str                                              
-INCLUDE_GRAPH_           bool       YES                                   
-INCLUDE_PATH_            srcdirs                                          
-INHERIT_DOCS_            bool       YES                                   
-INLINE_GROUPED_CLASSES_  bool       NO                                    
-INLINE_INFO_             bool       YES                                   
-INLINE_INHERITED_MEMB_   bool       NO                                    
-INLINE_SIMPLE_STRUCTS_   bool       NO                                    
-INLINE_SOURCES_          bool       NO                                    
-INPUT_                   srcentries                                       
-INPUT_ENCODING_          str        UTF-8                                 
-INPUT_FILTER_            str                                              
-INTERACTIVE_SVG_         bool       NO                                    
-INTERNAL_DOCS_           bool       NO                                    
-JAVADOC_AUTOBRIEF_       bool       NO                                    
-LATEX_BATCHMODE_         bool       NO                                    
-LATEX_BIB_STYLE_         str                                              
-LATEX_CMD_NAME_          str        latex                                 
-LATEX_EXTRA_FILES_       srcfiles                                         
-LATEX_FOOTER_            srcfile                                          
-LATEX_HEADER_            srcfile                                          
-LATEX_HIDE_INDICES_      bool       NO                                    
-LATEX_OUTPUT_            str        latex                                 
-LATEX_SOURCE_CODE_       bool       NO                                    
-LAYOUT_FILE_             srcfile                                          
-LOOKUP_CACHE_SIZE_       int        0                                     
-MACRO_EXPANSION_         bool       NO                                    
-MAKEINDEX_CMD_NAME_      str        makeindex                             
-MAN_EXTENSION_           str        .3                                    
-MAN_LINKS_               bool       NO                                    
-MAN_OUTPUT_              str        man                                   
-MARKDOWN_SUPPORT_        bool       YES                                   
-MATHJAX_CODEFILE_        srcfile                                          
-MATHJAX_EXTENSIONS_      str                                              
-MATHJAX_FORMAT_          str        HTML-CSS                              
-MATHJAX_RELPATH_         str        http://cdn.mathjax.org/mathjax/latest 
-MAX_DOT_GRAPH_DEPTH_     int        0                                     
-MAX_INITIALIZER_LINES_   int        30                                    
-MSCFILE_DIRS_            dirs                                             
-MSCGEN_PATH_             str                                              
-MULTILINE_CPP_IS_BRIEF_  bool       NO                                    
-OPTIMIZE_FOR_FORTRAN_    bool       NO                                    
-OPTIMIZE_OUTPUT_FOR_C_   bool       NO                                    
-OPTIMIZE_OUTPUT_JAVA_    bool       NO                                    
-OPTIMIZE_OUTPUT_VHDL_    bool       NO                                    
-OUTPUT_DIRECTORY_        dir                                              
-OUTPUT_LANGUAGE_         str        English                               
-PAPER_TYPE_              str        a4                                    
-PDF_HYPERLINKS_          bool       YES                                   
-PERLMOD_LATEX_           bool       NO                                    
-PERLMOD_MAKEVAR_PREFIX_  str                                              
-PERLMOD_PRETTY_          bool       YES                                   
-PERL_PATH_               str        /usr/bin/perl                         
-PREDEFINED_              list                                             
-PROJECT_BRIEF_           str                                              
-PROJECT_LOGO_            str                                              
-PROJECT_NAME_            str        "My Project"                          
-PROJECT_NUMBER_          str                                              
-QCH_FILE_                str                                              
-QHG_LOCATION_            str                                              
-QHP_CUST_FILTER_ATTRS_   str                                              
-QHP_CUST_FILTER_NAME_    str                                              
-QHP_NAMESPACE_           str                                              
-QHP_SECT_FILTER_ATTRS_   str                                              
-QHP_VIRTUAL_FOLDER_      str        doc                                   
-QT_AUTOBRIEF_            bool       NO                                    
-QUIET_                   bool       NO                                    
-RECURSIVE_               bool       NO                                    
-REFERENCED_BY_RELATION_  bool       NO                                    
-REFERENCES_LINK_SOURCE_  bool       YES                                   
-REFERENCES_RELATION_     bool       NO                                    
-REPEAT_BRIEF_            bool       YES                                   
-RTF_EXTENSIONS_FILE_     file                                             
-RTF_HYPERLINKS_          bool       NO                                    
-RTF_OUTPUT_              str        rtf                                   
-RTF_STYLESHEET_FILE_     file                                             
-SEARCHDATA_FILE_         str        searchdata.xml                        
-SEARCHENGINE_            bool       YES                                   
-SEARCHENGINE_URL_        str                                              
-SEARCH_INCLUDES_         bool       YES                                   
-SEPARATE_MEMBER_PAGES_   bool       NO                                    
-SERVER_BASED_SEARCH_     bool       NO                                    
-SHORT_NAMES_             bool       NO                                    
-SHOW_FILES_              bool       YES                                   
-SHOW_INCLUDE_FILES_      bool       YES                                   
-SHOW_NAMESPACES_         bool       YES                                   
-SHOW_USED_FILES_         bool       YES                                   
-SIP_SUPPORT_             bool       NO                                    
-SKIP_FUNCTION_MACROS_    bool       YES                                   
-SORT_BRIEF_DOCS_         bool       NO                                    
-SORT_BY_SCOPE_NAME_      bool       NO                                    
-SORT_GROUP_NAMES_        bool       NO                                    
-SORT_MEMBERS_CTORS_1ST_  bool       NO                                    
-SORT_MEMBER_DOCS_        bool       YES                                   
-SOURCE_BROWSER_          bool       NO                                    
-SOURCE_TOOLTIPS_         bool       YES                                   
-STRICT_PROTO_MATCHING_   bool       NO                                    
-STRIP_CODE_COMMENTS_     bool       YES                                   
-STRIP_FROM_INC_PATH_     srcdirs                                          
-STRIP_FROM_PATH_         srcdirs                                          
-SUBGROUPING_             bool       YES                                   
-TAB_SIZE_                int        4                                     
-TAGFILES_                str                                              
-TCL_SUBST_               str                                              
-TEMPLATE_RELATIONS_      bool       NO                                    
-TOC_EXPAND_              bool       NO                                    
-TREEVIEW_WIDTH_          int        250                                   
-TYPEDEF_HIDES_STRUCT_    bool       NO                                    
-UML_LIMIT_NUM_FIELDS_    int        10                                    
-UML_LOOK_                bool       NO                                    
-USE_HTAGS_               bool       NO                                    
-USE_MATHJAX_             bool       NO                                    
-USE_MDFILE_AS_MAINPAGE_  srcfile                                          
-USE_PDFLATEX_            bool       YES                                   
-VERBATIM_HEADERS_        bool       YES                                   
-WARNINGS_                bool       YES                                   
-WARN_FORMAT_             str        "$file:$line: $text"                  
-WARN_IF_DOC_ERROR_       bool       YES                                   
-WARN_IF_UNDOCUMENTED_    bool       YES                                   
-WARN_LOGFILE_            file                                             
-WARN_NO_PARAMDOC_        bool       NO                                    
-XML_DTD_                 str                                              
-XML_OUTPUT_              str        xml                                   
-XML_PROGRAMLISTING_      bool       YES                                   
-XML_SCHEMA_              str                                              
-======================== ========== ===================================== 
+======================== ========== =====================================
+Option                   Type       Default
+======================== ========== =====================================
+ABBREVIATE_BRIEF_        str
+ALIASES_                 str
+ALLEXTERNALS_            bool       NO
+ALPHABETICAL_INDEX_      bool       YES
+ALWAYS_DETAILED_SEC_     bool       NO
+AUTOLINK_SUPPORT_        bool       YES
+BINARY_TOC_              bool       NO
+BRIEF_MEMBER_DESC_       bool       YES
+BUILTIN_STL_SUPPORT_     bool       NO
+CALLER_GRAPH_            bool       NO
+CALL_GRAPH_              bool       NO
+CASE_SENSE_NAMES_        bool       *OS specific*
+CHM_FILE_                srcfile
+CHM_INDEX_ENCODING_      str
+CITE_BIB_FILES_          files
+CLANG_ASSISTED_PARSING_  bool       NO
+CLANG_OPTIONS_           str
+CLASS_DIAGRAMS_          bool       YES
+CLASS_GRAPH_             bool       YES
+COLLABORATION_GRAPH_     bool       YES
+COLS_IN_ALPHA_INDEX_     str
+COMPACT_LATEX_           bool       NO
+COMPACT_RTF_             bool       NO
+CPP_CLI_SUPPORT_         bool       NO
+CREATE_SUBDIRS_          bool       NO
+DIRECTORY_GRAPH_         bool       YES
+DISABLE_INDEX_           bool       NO
+DISTRIBUTE_GROUP_DOC_    bool       NO
+DOCBOOK_OUTPUT_          dir
+DOCSET_BUNDLE_ID_        str        org.doxygen.Project
+DOCSET_FEEDNAME_         str        "Doxygen generated docs"
+DOCSET_PUBLISHER_ID_     str        org.doxygen.Publisher
+DOCSET_PUBLISHER_NAME_   str        Publisher
+DOTFILE_DIRS_            srcdirs
+DOT_CLEANUP_             bool       YES
+DOT_FONTNAME_            str        Helvetica
+DOT_FONTPATH_            srcdir
+DOT_FONTSIZE_            int        10
+DOT_GRAPH_MAX_NODES_     int        50
+DOT_IMAGE_FORMAT_        str        png
+DOT_MULTI_TARGETS_       bool       NO
+DOT_NUM_THREADS_         int        0
+DOT_PATH_                str
+DOT_TRANSPARENT_         bool       NO
+DOXYFILE_ENCODING_       str        UTF-8
+ECLIPSE_DOC_ID_          str        org.doxygen.Project
+ENABLED_SECTIONS_        str
+ENABLE_PREPROCESSING_    bool       YES
+ENUM_VALUES_PER_LINE_    int        4
+EXAMPLE_PATH_            srcdirs
+EXAMPLE_PATTERNS_        str
+EXAMPLE_RECURSIVE_       bool       NO
+EXCLUDE_                 srcdirs
+EXCLUDE_PATTERNS_        str
+EXCLUDE_SYMBOLS_         str
+EXCLUDE_SYMLINKS_        bool       NO
+EXPAND_AS_DEFINED_       list
+EXPAND_ONLY_PREDEF_      bool       NO
+EXTENSION_MAPPING_       str
+EXTERNAL_GROUPS_         bool       YES
+EXTERNAL_PAGES_          bool       YES
+EXTERNAL_SEARCH_         bool       NO
+EXTERNAL_SEARCH_ID_      str
+EXTRACT_ALL_             bool       NO
+EXTRACT_ANON_NSPACES_    bool       NO
+EXTRACT_LOCAL_CLASSES_   bool       YES
+EXTRACT_LOCAL_METHODS_   bool       NO
+EXTRACT_PACKAGE_         bool       NO
+EXTRACT_PRIVATE_         bool       NO
+EXTRACT_STATIC_          bool       NO
+EXTRA_PACKAGES_          str
+EXTRA_SEARCH_MAPPINGS_   str
+EXT_LINKS_IN_WINDOW_     bool       NO
+FILE_PATTERNS_           str
+FILE_VERSION_FILTER_     str
+FILTER_PATTERNS_         dict
+FILTER_SOURCE_FILES_     bool       NO
+FILTER_SOURCE_PATTERNS_  dict
+FORCE_LOCAL_INCLUDES_    bool       NO
+FORMULA_FONTSIZE_        int        10
+FORMULA_TRANSPARENT_     bool       YES
+FULL_PATH_NAMES_         bool       YES
+GENERATE_AUTOGEN_DEF_    bool       NO
+GENERATE_BUGLIST_        bool       YES
+GENERATE_CHI_            bool       NO
+GENERATE_DEPRECATEDLIST_ bool       YES
+GENERATE_DOCBOOK_        bool       NO
+GENERATE_DOCSET_         bool       NO
+GENERATE_ECLIPSEHELP_    bool       NO
+GENERATE_HTML_           bool       YES
+GENERATE_HTMLHELP_       bool       NO
+GENERATE_LATEX_          bool       YES
+GENERATE_LEGEND_         bool       YES
+GENERATE_MAN_            bool       NO
+GENERATE_PERLMOD_        bool       NO
+GENERATE_QHP_            bool       NO
+GENERATE_RTF_            bool       NO
+GENERATE_TAGFILE_        file
+GENERATE_TESTLIST_       bool       YES
+GENERATE_TODOLIST_       bool       YES
+GENERATE_TREEVIEW_       bool       NO
+GENERATE_XML_            bool       NO
+GRAPHICAL_HIERARCHY_     bool       YES
+GROUP_GRAPHS_            bool       YES
+HAVE_DOT_                bool       NO
+HHC_LOCATION_            str
+HIDE_FRIEND_COMPOUNDS_   bool       NO
+HIDE_IN_BODY_DOCS_       bool       NO
+HIDE_SCOPE_NAMES_        bool       NO
+HIDE_UNDOC_CLASSES_      bool       NO
+HIDE_UNDOC_MEMBERS_      bool       NO
+HIDE_UNDOC_RELATIONS_    bool       YES
+HTML_COLORSTYLE_GAMMA_   int        80
+HTML_COLORSTYLE_HUE_     int        220
+HTML_COLORSTYLE_SAT_     int        100
+HTML_DYNAMIC_SECTIONS_   bool       NO
+HTML_EXTRA_FILES_        srcfiles
+HTML_EXTRA_STYLESHEET_   srcfile
+HTML_FILE_EXTENSION_     str        .html
+HTML_FOOTER_             srcfile
+HTML_HEADER_             srcfile
+HTML_INDEX_NUM_ENTRIES_  int        100
+HTML_OUTPUT_             str        html
+HTML_STYLESHEET_         srcfile
+HTML_TIMESTAMP_          bool       YES
+IDL_PROPERTY_SUPPORT_    bool       YES
+IGNORE_PREFIX_           str
+IMAGE_PATH_              srcdirs
+INCLUDED_BY_GRAPH_       bool       YES
+INCLUDE_FILE_PATTERNS_   str
+INCLUDE_GRAPH_           bool       YES
+INCLUDE_PATH_            srcdirs
+INHERIT_DOCS_            bool       YES
+INLINE_GROUPED_CLASSES_  bool       NO
+INLINE_INFO_             bool       YES
+INLINE_INHERITED_MEMB_   bool       NO
+INLINE_SIMPLE_STRUCTS_   bool       NO
+INLINE_SOURCES_          bool       NO
+INPUT_                   srcentries
+INPUT_ENCODING_          str        UTF-8
+INPUT_FILTER_            str
+INTERACTIVE_SVG_         bool       NO
+INTERNAL_DOCS_           bool       NO
+JAVADOC_AUTOBRIEF_       bool       NO
+LATEX_BATCHMODE_         bool       NO
+LATEX_BIB_STYLE_         str
+LATEX_CMD_NAME_          str        latex
+LATEX_EXTRA_FILES_       srcfiles
+LATEX_FOOTER_            srcfile
+LATEX_HEADER_            srcfile
+LATEX_HIDE_INDICES_      bool       NO
+LATEX_OUTPUT_            str        latex
+LATEX_SOURCE_CODE_       bool       NO
+LAYOUT_FILE_             srcfile
+LOOKUP_CACHE_SIZE_       int        0
+MACRO_EXPANSION_         bool       NO
+MAKEINDEX_CMD_NAME_      str        makeindex
+MAN_EXTENSION_           str        .3
+MAN_LINKS_               bool       NO
+MAN_OUTPUT_              str        man
+MARKDOWN_SUPPORT_        bool       YES
+MATHJAX_CODEFILE_        srcfile
+MATHJAX_EXTENSIONS_      str
+MATHJAX_FORMAT_          str        HTML-CSS
+MATHJAX_RELPATH_         str        http://cdn.mathjax.org/mathjax/latest
+MAX_DOT_GRAPH_DEPTH_     int        0
+MAX_INITIALIZER_LINES_   int        30
+MSCFILE_DIRS_            dirs
+MSCGEN_PATH_             str
+MULTILINE_CPP_IS_BRIEF_  bool       NO
+OPTIMIZE_FOR_FORTRAN_    bool       NO
+OPTIMIZE_OUTPUT_FOR_C_   bool       NO
+OPTIMIZE_OUTPUT_JAVA_    bool       NO
+OPTIMIZE_OUTPUT_VHDL_    bool       NO
+OUTPUT_DIRECTORY_        dir
+OUTPUT_LANGUAGE_         str        English
+PAPER_TYPE_              str        a4
+PDF_HYPERLINKS_          bool       YES
+PERLMOD_LATEX_           bool       NO
+PERLMOD_MAKEVAR_PREFIX_  str
+PERLMOD_PRETTY_          bool       YES
+PERL_PATH_               str        /usr/bin/perl
+PREDEFINED_              list
+PROJECT_BRIEF_           str
+PROJECT_LOGO_            str
+PROJECT_NAME_            str        "My Project"
+PROJECT_NUMBER_          str
+QCH_FILE_                str
+QHG_LOCATION_            str
+QHP_CUST_FILTER_ATTRS_   str
+QHP_CUST_FILTER_NAME_    str
+QHP_NAMESPACE_           str
+QHP_SECT_FILTER_ATTRS_   str
+QHP_VIRTUAL_FOLDER_      str        doc
+QT_AUTOBRIEF_            bool       NO
+QUIET_                   bool       NO
+RECURSIVE_               bool       NO
+REFERENCED_BY_RELATION_  bool       NO
+REFERENCES_LINK_SOURCE_  bool       YES
+REFERENCES_RELATION_     bool       NO
+REPEAT_BRIEF_            bool       YES
+RTF_EXTENSIONS_FILE_     file
+RTF_HYPERLINKS_          bool       NO
+RTF_OUTPUT_              str        rtf
+RTF_STYLESHEET_FILE_     file
+SEARCHDATA_FILE_         str        searchdata.xml
+SEARCHENGINE_            bool       YES
+SEARCHENGINE_URL_        str
+SEARCH_INCLUDES_         bool       YES
+SEPARATE_MEMBER_PAGES_   bool       NO
+SERVER_BASED_SEARCH_     bool       NO
+SHORT_NAMES_             bool       NO
+SHOW_FILES_              bool       YES
+SHOW_INCLUDE_FILES_      bool       YES
+SHOW_NAMESPACES_         bool       YES
+SHOW_USED_FILES_         bool       YES
+SIP_SUPPORT_             bool       NO
+SKIP_FUNCTION_MACROS_    bool       YES
+SORT_BRIEF_DOCS_         bool       NO
+SORT_BY_SCOPE_NAME_      bool       NO
+SORT_GROUP_NAMES_        bool       NO
+SORT_MEMBERS_CTORS_1ST_  bool       NO
+SORT_MEMBER_DOCS_        bool       YES
+SOURCE_BROWSER_          bool       NO
+SOURCE_TOOLTIPS_         bool       YES
+STRICT_PROTO_MATCHING_   bool       NO
+STRIP_CODE_COMMENTS_     bool       YES
+STRIP_FROM_INC_PATH_     srcdirs
+STRIP_FROM_PATH_         srcdirs
+SUBGROUPING_             bool       YES
+TAB_SIZE_                int        4
+TAGFILES_                str
+TCL_SUBST_               str
+TEMPLATE_RELATIONS_      bool       NO
+TOC_EXPAND_              bool       NO
+TREEVIEW_WIDTH_          int        250
+TYPEDEF_HIDES_STRUCT_    bool       NO
+UML_LIMIT_NUM_FIELDS_    int        10
+UML_LOOK_                bool       NO
+USE_HTAGS_               bool       NO
+USE_MATHJAX_             bool       NO
+USE_MDFILE_AS_MAINPAGE_  srcfile
+USE_PDFLATEX_            bool       YES
+VERBATIM_HEADERS_        bool       YES
+WARNINGS_                bool       YES
+WARN_FORMAT_             str        "$file:$line: $text"
+WARN_IF_DOC_ERROR_       bool       YES
+WARN_IF_UNDOCUMENTED_    bool       YES
+WARN_LOGFILE_            file
+WARN_NO_PARAMDOC_        bool       NO
+XML_DTD_                 str
+XML_OUTPUT_              str        xml
+XML_PROGRAMLISTING_      bool       YES
+XML_SCHEMA_              str
+======================== ========== =====================================
 
 .. _ABBREVIATE_BRIEF: http://doxygen.org/manual/config.html#cfg_abbreviate_brief
 .. _ALIASES: http://doxygen.org/manual/config.html#cfg_aliases
@@ -734,7 +734,7 @@ in this ``README.rst`` (note, just skip scons messages).
 LICENSE
 -------
 
-Copyright (c) 2013 by Pawel Tomulik <ptomulik@meil.pw.edu.pl>
+Copyright (c) 2013-2018 by Pawel Tomulik <ptomulik@meil.pw.edu.pl>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

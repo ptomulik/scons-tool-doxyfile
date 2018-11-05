@@ -1,19 +1,20 @@
+# -*- coding: utf-8 -*-
 """`doxyoptions`
 """
 
 #
-# Copyright (c) 2013 by Pawel Tomulik
-# 
+# Copyright (c) 2013-2018 by Paweł Tomulik
+#
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
 # in the Software without restriction, including without limitation the rights
 # to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 # copies of the Software, and to permit persons to whom the Software is
 # furnished to do so, subject to the following conditions:
-# 
+#
 # The above copyright notice and this permission notice shall be included in all
 # copies or substantial portions of the Software.
-# 
+#
 # THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 # IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 # FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -22,6 +23,11 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE
 # Factory method
+
+try:
+    _int_types = (int, long)
+except NameError:
+    _int_types = (int,)
 
 def DoxyVal(env, val, kind=None, **kw):
     import SCons.Util
@@ -81,7 +87,7 @@ class DoxyValBase(object):
         return '='
     @classmethod
     def default_quot(cls):
-        return lambda s :  "\"%s\"" % s 
+        return lambda s :  "\"%s\"" % s
     @classmethod
     def kind(cls):
         import re
@@ -113,7 +119,8 @@ class DoxyValInt(DoxyValBase):
     def _assign(self, val):
         import SCons.Util
         import SCons.Errors
-        if not isinstance(val, (int,long)):
+        global _int_types
+        if not isinstance(val, _int_types):
             raise SCons.Errors.UserError("can not set doxygen option of type int to %r" % val)
         self._value = val
     def _str(self):
@@ -124,7 +131,7 @@ class DoxyValBool(DoxyValBase):
         import SCons.Errors
         if val == 'YES': val = True
         elif val == 'NO': val = False
-        if not isinstance(val, bool) and not isinstance(val, (int,long)):
+        if not isinstance(val, bool) and not isinstance(val, _int_types):
             raise SCons.Errors.UserError("can not set doxygen option of type bool to %r" % val)
         self._value = bool(val)
     def _str(self):
@@ -156,10 +163,10 @@ class DoxyValDict(DoxyValSeq):
         import SCons.Errors
         if not isinstance(val, dict):
             raise SCons.Errors.UserError("can not set doxygen option of type int to %r" % val)
-        self._value = dict([(k,DoxyVal(self._env, v, **self._kw)) for k,v in val.iteritems()])
+        self._value = dict([(k,DoxyVal(self._env, v, **self._kw)) for k,v in val.items()])
     def _str(self):
         f = lambda k,v : "%s%s%s" % (k, self._kw['dsep'], ('' if v is None else v))
-        items = [f(k,v) for (k,v) in self._value.iteritems()]
+        items = [f(k,v) for (k,v) in self._value.items()]
         return super(DoxyValDict,self)._str_seq(items)
 
 class DoxyValFsList(DoxyValList):
@@ -177,12 +184,16 @@ class DoxyValFsBase(DoxyValStr):
         import SCons.Node.FS
         if isinstance(val, SCons.Node.FS.Base):
             self._fs_assign(val)
-        elif SCons.Util.is_String(val): 
+        elif SCons.Util.is_String(val):
             self._fs_assign(self._fs_create(val))
         else:
             raise SCons.Errors.UserError("can not set doxygen option of type %s to %r" % (self.kind(),val))
     def _str(self):
-        return self._str_str(self._value.get_abspath())
+        import sys
+        if sys.platform == 'win32':
+            return self._str_str(self._value.get_abspath().replace('\\', '\\\\'))
+        else:
+            return self._str_str(self._value.get_abspath())
     def _fs_assign(self,val):
         self._value = val
     def _fs_create(self,val):
