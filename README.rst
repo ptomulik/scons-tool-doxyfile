@@ -1,6 +1,17 @@
 scons-tool-doxyfile
 ===================
 
+.. image:: https://badge.fury.io/py/scons-tool-doxyfile.svg
+    :target: https://badge.fury.io/py/scons-tool-doxyfile
+    :alt: PyPi package version
+
+.. image:: https://travis-ci.org/ptomulik/scons-tool-doxyfile.svg?branch=master
+    :target: https://travis-ci.org/ptomulik/scons-tool-doxyfile
+    :alt: Travis CI build status
+
+.. image:: https://ci.appveyor.com/api/projects/status/github/ptomulik/scons-tool-doxyfile?svg=true
+    :target: https://ci.appveyor.com/project/ptomulik/scons-tool-doxyfile
+
 SCons_ tool to generate Doxyfile for Doxygen_. The generated Doxyfile may be
 further used by scons_doxygen_ tool.
 
