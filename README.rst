@@ -772,6 +772,9 @@ XML_SCHEMA_              str
 .. _Doxygen: http://doxygen.org
 .. _scons_doxygen: https://bitbucket.org/russel/scons_doxygen
 .. _scons-doxygen-template: https://github.com/ptomulik/scons-doxygen-template
+.. _scons-tool-loader: https://github.com/ptomulik/scons-tool-loader
+.. _pipenv: https://pipenv.readthedocs.io/
+.. _pypi: https://pypi.org/
 
 Notes to developers
 -------------------
