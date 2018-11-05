@@ -15,27 +15,73 @@ scons-tool-doxyfile
 SCons_ tool to generate Doxyfile for Doxygen_. The generated Doxyfile may be
 further used by scons_doxygen_ tool.
 
+
+Installation
+------------
+
+There are few ways to install this tool for your project.
+
+From pypi_
+^^^^^^^^^^
+
+This method may be preferable if you build your project under a virtualenv. To
+add doxyfile tool from pypi_, type (within your wirtualenv):
+
+.. code-block:: shell
+
+   pip install scons-tool-loader scons-tool-doxyfile
+
+or, if your project uses pipenv_:
+
+.. code-block:: shell
+
+   pipenv install --dev scons-tool-loader scons-tool-doxyfile
+
+Alternatively, you may add this to your ``Pipfile``
+
+.. code-block::
+
+   [dev-packages]
+   scons-tool-loader = "*"
+   scons-tool-doxyfile = "*"
+
+
+The tool will be installed as a namespaced package ``sconstool.doxyfile``
+in project's virtual environment. You may further use scons-tool-loader_
+to load the tool.
+
+As a git submodule
+^^^^^^^^^^^^^^^^^^
+
+#. Create new git repository:
+
+   .. code-block:: shell
+
+      mkdir /tmp/prj && cd /tmp/prj
+      touch README.rst
+      git init
+
+#. Add the `scons-tool-doxyfile`_ as a submodule:
+
+   .. code-block:: shell
+
+      git submodule add git://github.com/ptomulik/scons-tool-doxyfile.git site_scons/site_tools/doxyfile
+
+#. For python 2.x create ``__init__.py`` in ``site_tools`` directory:
+
+   .. code-block:: shell
+
+      touch site_scons/site_tools/__init__.py
+
+   this will allow to directly import ``site_tools.doxyfile`` (this may be required by other tools).
+
 Usage example
 -------------
 
 Git-based projects
 ^^^^^^^^^^^^^^^^^^
 
-#. Create new git repository::
-
-      mkdir /tmp/prj && cd /tmp/prj
-      touch README.rst
-      git init
-
-#. Add scons_doxygen_ as submodule (here we use git mirror of scons_doxygen_)::
-
-      git submodule add git://github.com/ptomulik/scons_doxygen.git site_scons/site_tools/doxygen
-
-#. Add **scons-tool-doxyfile** as submodule::
-
-      git submodule add git://github.com/ptomulik/scons-tool-doxyfile.git site_scons/site_tools/doxyfile
-
-#. Copy doxygen template to ``src/``::
+#. Copy doxygen template to ``src/``, for example::
 
       mkdir src && cp site_scons/site_tools/doxyfile/Doxyfile.in src/
 
@@ -47,14 +93,14 @@ Git-based projects
       /**
        * @brief Test class
        */
-       class TestClass { };
+      class TestClass { };
 
 #. Write ``SConstruct`` file:
 
    .. code-block:: python
 
       # SConstruct
-      env = Environment(tools = [ 'doxyfile', 'doxygen'])
+      env = Environment(tools=['doxyfile', 'doxygen'])
       SConscript('src/SConscript', exports=['env'], variant_dir='build', duplicate=0)
 
 #. Write ``src/SConscript``:
